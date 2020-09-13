@@ -8,6 +8,7 @@ from dash.dependencies import Input, Output
 # Load data
 df = pd.read_csv('data/stockdata2.csv', index_col=0, parse_dates=True)
 df.index = pd.to_datetime(df['Date'])
+senti_df = pd.read_csv('data/Number_emotion.csv')
 
 # Initialize the app
 app = dash.Dash(__name__)
@@ -20,6 +21,30 @@ def get_options(list_stocks):
         dict_list.append({'label': i, 'value': i})
 
     return dict_list
+
+##Table for bar chart for total sentimnet 
+x_bar = ['Anger', 'Fear','Analytical','Joy','Sadness']
+y_bar = [senti_df['anger_output'].sum(), senti_df['fear_output'].sum(), senti_df['analytical_output'].sum(), senti_df['joy_output'].sum(), senti_df['sadness_output'].sum()]
+fig_bar = go.Figure(data=[go.Bar(
+            x=x_bar, y=y_bar,
+            #colorway=["#5E0DAC", '#FF4F00', '#375CB1', '#FF7400', '#FFF400', '#FF0056'],
+            text=y_bar,
+            textposition='auto',
+            marker =  {'color': ['#b50000','#037357', '#375CB1','#d4bc81','#a267cf', '#FF4F00','#FF0056','#5E0DAC',  ]}
+        )])
+fig_bar.update_layout(
+                #colorway=["#5E0DAC", '#FF4F00', '#375CB1', '#FF7400', '#FFF400', '#FF0056'],
+                template='plotly_dark',
+                paper_bgcolor='rgba(0, 0, 0, 0)',
+                plot_bgcolor='rgba(0, 0, 0, 0)',
+                margin={'b': 15},
+                hovermode='x',
+                autosize=True,
+                title={'text': 'Overall Recorded Sentiments', 'font': {'color': 'white'}, 'x': 0.5},
+                #xaxis={'range': [df_sub.index.min(), df_sub.index.max()]},
+                xaxis_title="Emotions",
+                yaxis_title="Count",
+)
 
 
 app.layout = html.Div(
@@ -46,8 +71,17 @@ app.layout = html.Div(
                     html.Div(className='eight columns div-for-charts bg-grey',
                              children=[
                                  dcc.Graph(id='timeseries', config={'displayModeBar': False}, animate=True)
-                             ])
-                              ])
+                             ]),
+                    html.Div(className = 'four columns div-for-charts bg-grey',
+                        children = [
+                            dcc.Graph(id = 'Sentiment_Bar',
+                            config={'displayModeBar': False},
+                            animate =True,
+                            figure = fig_bar
+                                )
+                            ]
+                        )
+                    ])
         ]
 
 )
