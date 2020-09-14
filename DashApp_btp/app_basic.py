@@ -95,20 +95,15 @@ app.layout = html.Div(
                                     ],
                                     value='March'
                                 )
-                                #  ,
-                                #  html.Div(
-                                #      className='div-for-dropdown',
-                                #      children=[
-                                #          dcc.Dropdown(id='stockselector', options=get_options(df['stock'].unique()),
-                                #                       multi=False, value=[df['stock'].sort_values()[0]],
-                                #                       style={'backgroundColor': '#1E1E1E'},
-                                #                       className='stockselector'
-                                #                       ),
-                                #      ],
-                                #      style={'color': '#1E1E1E'})
-                             
+                                
                                 ]
                              ),
+                    html.Div(className='eight columns div-for-charts bg-grey',
+                             children=[
+                                  #  config={'displayModeBar': False}, animate=True
+                                 dcc.Graph(id='BarPlot', animate=True)
+                             ])
+                 ]),                            
                              html.Div(className = 'row',
                                 children = [
                                  html.Div(className = 'four columns',
@@ -152,13 +147,17 @@ app.layout = html.Div(
                                     #figure = fig_posneg 
                                     )
                                 ]),
-                            ]
-                        ),
-                    html.Div(className='eight columns div-for-charts bg-grey',
-                             children=[
-                                  #  config={'displayModeBar': False}, animate=True
-                                 dcc.Graph(id='BarPlot', animate=True)
-                             ]),
+                           
+        html.Div(
+            children=[
+                html.Div(className = 'row',
+                children = [
+                    
+                ])
+            ]
+        ), 
+        ]
+        ),
                     html.Div(className = 'four columns div-for-charts bg-grey',
                         children = [
                             dcc.Graph(id = 'Sentiment_Bar',
@@ -168,7 +167,7 @@ app.layout = html.Div(
                                 )
                             ]
                         ),                       
-        ]),
+        
 
     ])
 
