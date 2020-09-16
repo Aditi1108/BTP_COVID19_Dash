@@ -70,6 +70,17 @@ fig_pie.update_layout(
 
 app.layout = html.Div(
     children=[
+        html.Div(
+            children=[
+                html.Div(className = 'row heading',
+                children = [
+                    html.H1('VISUALISATION DASHBOARD',
+                    style ={'font-family': 'Courier New','font-size' : '31px','color':'#FFFFFF','margin-bottom' : '0px'}),
+                    html.H5('SENTIMENT ANALYSIS OF COVID 19 TWEETS',
+                    style ={'font-family': 'Courier New','color':'#FFFFFF','padding-top':'0px','margin-top':'0px'})
+                ])
+            ]
+        ),
         html.Div(className='row',
                  children=[
                     html.Div(className='four columns div-user-controls',
