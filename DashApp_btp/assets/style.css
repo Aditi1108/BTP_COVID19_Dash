@@ -15,7 +15,6 @@ Taken from https://codepen.io/chriddyp/pen/bWLwgP.css
  - Media Queries
  - Custom App CSS */
 
-
 /* Grid –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {
     position: relative;
@@ -29,6 +28,15 @@ Taken from https://codepen.io/chriddyp/pen/bWLwgP.css
     width: 100%;
     float: left;
     box-sizing: border-box;
+  }
+  
+  .row1 {
+	height: 450px;
+	margin-top : 50px;
+  }
+  .row2 {
+	height: 450px;  
+	margin-top : 100px;
   }
   /* For devices larger than 400px */
   @media (min-width: 400px) {
@@ -415,7 +423,6 @@ Taken from https://codepen.io/chriddyp/pen/bWLwgP.css
   /* Custom App CSS Below --------------------------------- */
   /* Main Layout ––––––––––––––––––––––––––––––––––––––––––––––––––*/
   html, body{
-    height: 100%;
   }
   
   body {
@@ -455,9 +462,10 @@ Taken from https://codepen.io/chriddyp/pen/bWLwgP.css
   .div-for-charts{
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 500px;
     width: 100%;
   }
+  
   #histogram {
     flex-grow: 1
   }
@@ -471,6 +479,8 @@ Taken from https://codepen.io/chriddyp/pen/bWLwgP.css
   .div-user-controls {
     padding-left: 55px;
     padding-top: 64px;
+	height: 500px;
+    width: 100%;
   }
   .div-for-dropdown {
     padding-top: 12px;
